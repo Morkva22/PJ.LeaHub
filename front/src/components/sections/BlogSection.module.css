@@ -1,0 +1,71 @@
+.section {
+    padding: 100px 20px;
+    background: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h2 {
+    font-size: 40px;
+    color: #333;
+    margin-bottom: 60px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 40px;
+}
+
+.card {
+    background: #fafafa;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.img {
+    height: 200px;
+    background: linear-gradient(45deg, #50C878, #FF6B6B);
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    padding: 24px;
+    text-align: left;
+}
+
+h3 {
+    font-size: 20px;
+    margin: 0 0 12px;
+    color: #333;
+}
+
+.meta {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 16px;
+}
+
+.link {
+    color: #50C878;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}

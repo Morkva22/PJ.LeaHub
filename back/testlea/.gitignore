@@ -1,0 +1,24 @@
+# Build results
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+
+# IDE
+.idea/
+.vs/
+*.suo
+*.user
+
+# Sensitive files
+appsettings.json
+appsettings.Development.json
+appsettings.*.json
+
+# Environment
+.env
+
+# Database
+*.db
+*.db-shm
+*.db-wal

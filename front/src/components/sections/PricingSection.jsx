@@ -1,5 +1,4 @@
 import React from 'react';
-import PricingCard from './PricingCard';
 import styles from './PricingSection.module.css';
 
 const PricingSection = ({ title, subtitle }) => {
@@ -20,5 +19,6 @@ const PricingSection = ({ title, subtitle }) => {
         </section>
     );
 };
+
 
 export default PricingSection;

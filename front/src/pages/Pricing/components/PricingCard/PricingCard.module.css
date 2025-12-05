@@ -1,0 +1,143 @@
+.card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    border: 1px solid var(--gray-medium);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 280px;
+}
+
+.leftSide {
+    background: linear-gradient(135deg, var(--primary) 0%, #3da866 100%);
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.rightSide {
+    padding: 40px 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    align-items: center;
+}
+
+.features {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.checkIcon {
+    flex-shrink: 0;
+}
+
+.feature span {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.4;
+}
+
+.priceSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    min-width: 200px;
+}
+
+.priceWrapper {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+}
+
+.dollar {
+    font-size: 14px;
+    color: var(--gray-dark);
+}
+
+.price {
+    font-size: 56px;
+    font-weight: 800;
+    color: #333;
+    line-height: 1;
+}
+
+.period {
+    font-size: 14px;
+    color: var(--gray-dark);
+    margin-top: 8px;
+    text-align: center;
+}
+
+.billing {
+    font-size: 12px;
+    color: var(--gray-dark);
+    margin-top: 4px;
+    text-align: center;
+}
+
+.ctaButton {
+    background: #3d8167;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.ctaButton:hover {
+    background: #3da866;
+}
+
+@media (max-width: 1024px) {
+    .card {
+        grid-template-columns: 1fr;
+    }
+
+    .rightSide {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .rightSide {
+        padding: 30px 20px;
+    }
+}

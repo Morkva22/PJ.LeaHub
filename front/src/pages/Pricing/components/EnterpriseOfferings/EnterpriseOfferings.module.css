@@ -1,0 +1,39 @@
+.enterpriseSection {
+    background-color: #f8f9fa;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 32px;
+    color: #50C878;
+    margin-bottom: 16px;
+    font-weight: 400;
+}
+
+.description {
+    font-size: 16px;
+    color: #373333;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.enterpriseButton {
+    background-color: #50C878;
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.enterpriseButton:hover {
+    background-color: #50C878;
+}

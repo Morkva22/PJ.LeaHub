@@ -1,0 +1,98 @@
+.featuresSection {
+    background-color: white;
+    padding: 80px 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 32px;
+    color: #373333;
+    margin-bottom: 40px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.tableWrapper {
+    overflow-x: auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.featuresTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.featuresTable thead {
+    background-color: #50C878;
+    position: sticky;
+    top: 0;
+}
+
+.headerCell {
+    padding: 16px 20px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+    border-bottom: 2px solid #3da866;
+}
+
+.headerCell:first-child {
+    width: 50%;
+}
+
+.headerCell:nth-child(2),
+.headerCell:nth-child(3) {
+    width: 25%;
+    text-align: center;
+}
+
+.categoryRow {
+    background-color: #f8f9fa;
+}
+
+.categoryCell {
+    padding: 16px 20px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #373333;
+    border-top: 2px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.featureRow {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.featureRow:hover {
+    background-color: #f8f9fa;
+}
+
+.featureCell {
+    padding: 14px 20px;
+    font-size: 14px;
+    color: #373333;
+}
+
+.checkCell {
+    padding: 14px 20px;
+    text-align: center;
+}
+
+.comingSoon {
+    font-size: 13px;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.customText {
+    font-size: 13px;
+    color: #373333;
+}

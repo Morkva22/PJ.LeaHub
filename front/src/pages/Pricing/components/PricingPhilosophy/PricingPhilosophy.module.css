@@ -1,0 +1,51 @@
+.philosophySection {
+    background-color: #f8f9fa;
+    padding: 80px 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contentWrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+}
+
+.leftColumn {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.title {
+    font-size: 32px;
+    color: #50C878;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.description {
+    font-size: 15px;
+    color: #373333;
+    line-height: 1.7;
+}
+
+.rightColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+@media (max-width: 968px) {
+    .contentWrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .leftColumn {
+        position: static;
+    }
+}

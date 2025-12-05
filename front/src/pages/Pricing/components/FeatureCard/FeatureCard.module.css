@@ -1,0 +1,30 @@
+.featureCard {
+    border-radius: 12px;
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.featureIconWrapper {
+    background-color: #3da866;
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+}
+
+.featureTitle {
+    font-size: 20px;
+    color: #3da866;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.featureDescription {
+    color: #373333;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+}

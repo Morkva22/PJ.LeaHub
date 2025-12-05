@@ -1,0 +1,46 @@
+.reviewsSection {
+    padding: 60px 20px;
+    background-color: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.reviewsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.reviewCard {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 12px;
+    border-left: 4px solid #50C878;
+}
+
+.reviewText {
+    font-size: 16px;
+    color: #373333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.reviewAuthor {
+    margin-top: 16px;
+}
+
+.authorName {
+    font-weight: 600;
+    color: #373333;
+    margin: 0;
+}
+
+.authorRole {
+    font-size: 14px;
+    color: #6c757d;
+    margin: 4px 0 0 0;
+}

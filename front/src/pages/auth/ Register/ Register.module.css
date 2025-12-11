@@ -1,0 +1,163 @@
+.authContainer {
+    display: flex;
+    min-height: 100vh;
+}
+
+.authForm {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #ffffff;
+}
+
+.formWrapper {
+    width: 100%;
+    max-width: 480px;
+}
+
+.logoSection {
+    margin-bottom: 3rem;
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin: 0;
+}
+
+.logoText {
+    color: var(--primary);
+}
+
+.errorBanner {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #fee;
+    border-left: 4px solid var(--danger);
+    color: var(--danger);
+}
+
+.formContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-dark);
+    margin-bottom: 0.5rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(80, 200, 120, 0.1);
+}
+
+.errorText {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--danger);
+}
+
+.checkboxGroup {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.checkbox {
+    margin-top: 0.25rem;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.checkboxLabel {
+    font-size: 0.875rem;
+    color: var(--gray-dark);
+}
+
+.link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 0.875rem;
+    background-color: var(--text);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submitButton:hover {
+    background-color: #2a2727;
+}
+
+.footerText {
+    margin-top: 2rem;
+    text-align: center;
+    color: var(--gray-dark);
+}
+
+.authSidebar {
+    flex: 1;
+    display: none;
+    background: linear-gradient(135deg, #2d5a3d 0%, var(--primary) 100%);
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+}
+
+.sidebarContent {
+    color: white;
+    max-width: 32rem;
+}
+
+.sidebarTitle {
+    font-size: 3rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+}
+
+.sidebarText {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 1024px) {
+    .authSidebar {
+        display: flex;
+    }
+}

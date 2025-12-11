@@ -1,0 +1,97 @@
+/* Schedule.module.css */
+
+.container {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    padding: 3rem 1rem;
+}
+
+.content {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header {
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: #373333;
+    margin-bottom: 1.5rem;
+}
+
+.hostInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.avatar {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+}
+
+.hostName {
+    font-weight: 600;
+    color: #373333;
+    font-size: 1.125rem;
+}
+
+.duration {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+}
+
+.icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.infoBox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background-color: #e8f5e9;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+    color: #373333;
+}
+
+.infoIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #50C878;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+.mainContent {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+
+.weekSection {
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .mainContent {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: static;
+    }
+}

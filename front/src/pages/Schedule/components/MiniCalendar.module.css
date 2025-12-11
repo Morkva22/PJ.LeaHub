@@ -1,0 +1,113 @@
+.container {
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    margin-top: 1rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.monthYear {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #373333;
+}
+
+.controls {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.navButton {
+    padding: 0.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+}
+
+.navButton:hover:not(:disabled) {
+    background-color: #f8f9fa;
+}
+
+.navButton:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.navIcon {
+    width: 1.125rem;
+    height: 1.125rem;
+    color: #373333;
+}
+
+.weekDays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.weekDay {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6c757d;
+    padding: 0.25rem 0;
+}
+
+.daysGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+}
+
+.dayButton {
+    aspect-ratio: 1;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #373333;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 1.75rem;
+    max-height: 2rem;
+    padding: 0.25rem;
+}
+
+.dayButton:not(.empty):hover {
+    background-color: #f8f9fa;
+}
+
+.dayButton.empty {
+    cursor: default;
+    visibility: hidden;
+}
+
+.dayButton.inWeek {
+    background-color: #d4f4dd;
+    color: #50C878;
+    font-weight: 600;
+}
+
+.dayButton.today {
+    background-color: #50C878;
+    color: white;
+    font-weight: 600;
+}
+
+.dayButton.today.inWeek {
+    background-color: #3da866;
+}

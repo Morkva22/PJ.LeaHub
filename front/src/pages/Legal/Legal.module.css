@@ -1,0 +1,16 @@
+.legalContainer {
+    min-height: 100vh;
+    background: white;
+}
+
+.contentArea {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 60px 80px;
+}
+
+@media (max-width: 768px) {
+    .contentArea {
+        padding: 40px 25px;
+    }
+}

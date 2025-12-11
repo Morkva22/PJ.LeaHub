@@ -1,0 +1,284 @@
+.legalContainer {
+    min-height: 100vh;
+    background: white;
+}
+
+.contentArea {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 60px 80px;
+}
+
+.legalDocument {
+    line-height: 1.6;
+    color: #333;
+}
+
+.legalDocument h1 {
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+    color: #333;
+    text-align: center;
+    font-weight: 700;
+    border-bottom: 3px solid #f0f0f0;
+    padding-bottom: 1rem;
+}
+
+.legalDocument h2 {
+    font-size: 2rem;
+    margin: 3rem 0 1.5rem;
+    color: #2c3e50;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #3498db;
+}
+
+.legalDocument h3 {
+    font-size: 1.5rem;
+    margin: 2.5rem 0 1rem;
+    color: #34495e;
+}
+
+.legalDocument h4 {
+    font-size: 1.3rem;
+    margin: 2rem 0 1rem;
+    color: #2c3e50;
+}
+
+.introSection {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border-left: 4px solid #3498db;
+}
+
+.introSection p {
+    margin-bottom: 1.2rem;
+}
+
+.trademarkTable {
+    margin: 2rem 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.marksTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.marksTable th,
+.marksTable td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.marksTable th {
+    background-color: #3498db;
+    color: white;
+    font-weight: 600;
+}
+
+.marksTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.marksTable tr:hover {
+    background-color: #e8f4fc;
+}
+
+.trademarkSection {
+    margin: 2rem 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.logosContainer {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+
+.logoPlaceholder {
+    width: 150px;
+    height: 100px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.excludedSection {
+    margin: 2rem 0;
+    padding: 20px;
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 8px;
+}
+
+.considerationsList {
+    margin: 1.5rem 0 1.5rem 2rem;
+    list-style-type: disc;
+}
+
+.considerationsList li {
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+}
+
+.similarMarksList {
+    margin: 0.5rem 0 0.5rem 2rem;
+    list-style-type: circle;
+}
+
+.similarMarksList li {
+    margin-bottom: 0.3rem;
+    font-style: italic;
+}
+
+.softwareSection,
+.licenseSection,
+.nonSoftwareSection,
+.generalSection {
+    margin: 2rem 0;
+    padding: 25px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #2ecc71;
+}
+
+.exampleList,
+.websiteRulesList,
+.userGroupList,
+.nominativeList,
+.trademarkRulesList {
+    margin: 1rem 0 1rem 2rem;
+    list-style-type: disc;
+}
+
+.exampleList li,
+.websiteRulesList li,
+.userGroupList li,
+.nominativeList li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.trademarkLawSection {
+    margin: 3rem 0;
+    padding: 30px;
+    background-color: #e8f4fc;
+    border-radius: 8px;
+    border: 2px solid #3498db;
+}
+
+.properUseSection {
+    margin: 2rem 0;
+    padding: 25px;
+    background-color: #f0f7ff;
+    border-radius: 8px;
+}
+
+.example {
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-left: 3px solid #3498db;
+    font-family: monospace;
+    line-height: 1.4;
+}
+
+.externalLink {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px dotted #3498db;
+}
+
+.externalLink:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+.emailLink {
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.emailLink:hover {
+    color: #c0392b;
+    text-decoration: underline;
+}
+
+.attribution {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 2px solid #f0f0f0;
+    text-align: center;
+    font-style: italic;
+    color: #7f8c8d;
+}
+
+@media (max-width: 768px) {
+    .contentArea {
+        padding: 30px 20px;
+    }
+
+    .legalDocument h1 {
+        font-size: 2.2rem;
+    }
+
+    .legalDocument h2 {
+        font-size: 1.7rem;
+    }
+
+    .legalDocument h3 {
+        font-size: 1.3rem;
+    }
+
+    .legalDocument h4 {
+        font-size: 1.1rem;
+    }
+
+    .logoPlaceholder {
+        width: 120px;
+        height: 80px;
+        font-size: 0.9rem;
+    }
+
+    .marksTable th,
+    .marksTable td {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+
+    .introSection,
+    .trademarkTable,
+    .trademarkSection,
+    .excludedSection,
+    .softwareSection,
+    .licenseSection,
+    .nonSoftwareSection,
+    .generalSection,
+    .trademarkLawSection,
+    .properUseSection {
+        padding: 15px;
+    }
+
+    .logosContainer {
+        gap: 10px;
+        justify-content: center;
+    }
+}

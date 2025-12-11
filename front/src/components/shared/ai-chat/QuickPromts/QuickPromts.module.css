@@ -1,0 +1,126 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.categoryTabs {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.categoryTab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-dark);
+    flex: 1;
+    justify-content: center;
+}
+
+.categoryTab:hover {
+    background: var(--gray-light);
+}
+
+.categoryTab.active {
+    background: #2d8659;
+    color: white;
+}
+
+.categoryIcon {
+    width: 16px;
+    height: 16px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gray-dark);
+    margin-bottom: 4px;
+}
+
+.headerIcon {
+    width: 18px;
+    height: 18px;
+    color: #2d8659;
+}
+
+.headerText {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.grid {
+    display: grid;
+    gap: 10px;
+}
+
+.promptButton {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.promptButton:hover {
+    border-color: #2d8659;
+    background: rgba(45, 134, 89, 0.02);
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(45, 134, 89, 0.15);
+}
+
+.promptButton:active {
+    transform: translateX(2px);
+}
+
+.iconBox {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(45, 134, 89, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.promptButton:hover .iconBox {
+    background: rgba(45, 134, 89, 0.2);
+    transform: scale(1.1);
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+    color: #2d8659;
+}
+
+.text {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 500;
+    line-height: 1.4;
+}

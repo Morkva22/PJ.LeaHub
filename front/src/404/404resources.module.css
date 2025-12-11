@@ -1,0 +1,114 @@
+.resourcesNotFoundContainer {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    padding: 2rem;
+}
+
+.resourcesNotFoundContent {
+    text-align: center;
+    max-width: 700px;
+}
+
+.lockIcon {
+    color: var(--primary);
+    margin-bottom: 2rem;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.lockIcon svg {
+    filter: drop-shadow(0 4px 6px rgba(80, 200, 120, 0.2));
+}
+
+.phrasesContainer {
+    position: relative;
+    height: 120px;
+    margin: 2rem 0;
+    overflow: hidden;
+}
+
+.phrase {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.phrase.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.phraseText {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 0.5rem;
+    line-height: 1.3;
+}
+
+.phraseLang {
+    font-size: 0.9rem;
+    color: var(--gray-dark);
+    font-weight: 500;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.resourcesDescription {
+    font-size: 1.1rem;
+    color: var(--gray-dark);
+    margin: 2rem 0;
+    line-height: 1.6;
+}
+
+.homeButtonResources {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.homeButtonResources:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(80, 200, 120, 0.3);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .lockIcon svg {
+        width: 60px;
+        height: 60px;
+    }
+
+    .phrasesContainer {
+        height: 100px;
+    }
+
+    .phraseText {
+        font-size: 1.5rem;
+    }
+
+    .resourcesDescription {
+        font-size: 1rem;
+    }
+}

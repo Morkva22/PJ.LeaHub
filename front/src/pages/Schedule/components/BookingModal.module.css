@@ -1,0 +1,250 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal {
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    max-width: 32rem;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    border-bottom: 1px solid #dee2e6;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #373333;
+    margin: 0 0 0.5rem 0;
+}
+
+.dateTime {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+}
+
+.separator {
+    margin: 0 0.5rem;
+}
+
+.timezone {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin: 0;
+}
+
+.closeButton {
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.375rem;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+
+.closeButton:hover {
+    background-color: #f8f9fa;
+}
+
+.closeIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #373333;
+}
+
+.content {
+    padding: 1.5rem;
+}
+
+.infoBox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background-color: #e8f5e9;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    color: #373333;
+}
+
+.errorBox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background-color: #fee;
+    border: 1px solid #fcc;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    color: #c33;
+}
+
+.errorBox p {
+    margin: 0;
+}
+
+.infoIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #50C878;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #373333;
+    margin: 0 0 1.25rem 0;
+}
+
+.sectionIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #50C878;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.formRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #373333;
+    margin-bottom: 0.5rem;
+}
+
+.input,
+.textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: #373333;
+    transition: all 0.2s;
+    outline: none;
+}
+
+.input:focus,
+.textarea:focus {
+    border-color: #50C878;
+    box-shadow: 0 0 0 3px rgba(80, 200, 120, 0.1);
+}
+
+.input:disabled,
+.textarea:disabled {
+    background-color: #f8f9fa;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.textarea {
+    resize: none;
+    font-family: inherit;
+}
+
+.hint {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-top: 0.375rem;
+}
+
+.actions {
+    display: flex;
+    gap: 0.75rem;
+    padding-top: 1rem;
+}
+
+.cancelButton {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #dee2e6;
+    background-color: white;
+    color: #373333;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cancelButton:hover:not(:disabled) {
+    background-color: #f8f9fa;
+}
+
+.cancelButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.submitButton {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    background-color: #50C878;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.submitButton:hover:not(:disabled) {
+    background-color: #3da866;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(80, 200, 120, 0.2);
+}
+
+.submitButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+@media (max-width: 640px) {
+    .formRow {
+        grid-template-columns: 1fr;
+    }
+}

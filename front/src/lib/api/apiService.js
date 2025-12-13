@@ -34,8 +34,9 @@ class ApiService {
         }
     }
 
+
     async sendMessage(content, conversationId = null) {
-        console.log('📤 Sending message:', { content, conversationId });
+        console.log(' Sending message:', { content, conversationId });
 
         return this.request('/chat/message', {
             method: 'POST',
@@ -45,6 +46,7 @@ class ApiService {
             })
         });
     }
+
 
     async sendMessageWithFiles(content, conversationId = null, files = []) {
         console.log('📎 Sending message with files:', { content, conversationId, filesCount: files.length });

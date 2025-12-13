@@ -18,13 +18,13 @@ class ApiService {
         };
 
         try {
-            // ✅ ИСПРАВЛЕНО: круглые скобки вместо обратных кавычек
             const response = await fetch(`${this.baseUrl}${endpoint}`, config);
 
             if (!response.ok) {
                 const error = await response.json().catch(() => ({ error: 'Request failed' }));
                 throw new Error(error.error || `HTTP error ${response.status}`);
             }
+
 
             return await response.json();
         } catch (error) {

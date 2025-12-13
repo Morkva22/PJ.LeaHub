@@ -4,7 +4,7 @@ import styles from './ReviewsSection.module.css';
 const ReviewsSection = () => {
     const reviews = [
         {
-            text: "Leantime has been a game changer for our team's productivity.",
+            text: "LeaHub has been a game changer for our team's productivity.",
             author: "Sarah Johnson",
             role: "Product Manager"
         },

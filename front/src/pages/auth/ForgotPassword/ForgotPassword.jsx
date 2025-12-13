@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
+import { authService } from '../../../lib/api/authService';
 import styles from './ForgotPassword.module.css';
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const validateEmail = (email) => {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!email.trim()) {
@@ -24,14 +26,36 @@ const ForgotPassword = () => {
         }
 
         setError('');
-        setSuccess(true);
-        console.log('Password reset requested for:', email);
+        setLoading(true);
+
+        try {
+            await authService.forgotPassword(email);
+            setSuccess(true);
+        } catch (err) {
+            setError(err.message || 'Failed to send reset email. Please try again.');
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleChange = (e) => {
         setEmail(e.target.value);
         if (error) {
             setError('');
+        }
+    };
+
+    const handleResend = async () => {
+        setSuccess(false);
+        setLoading(true);
+
+        try {
+            await authService.forgotPassword(email);
+            setSuccess(true);
+        } catch (err) {
+            setError(err.message || 'Failed to resend email. Please try again.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -70,14 +94,17 @@ const ForgotPassword = () => {
                                         onChange={handleChange}
                                         className={styles.input}
                                         placeholder="you@example.com"
+                                        disabled={loading}
                                     />
                                 </div>
 
                                 <button
                                     onClick={handleSubmit}
                                     className={styles.submitButton}
+                                    disabled={loading}
+                                    style={{ opacity: loading ? 0.6 : 1 }}
                                 >
-                                    Reset Password
+                                    {loading ? 'Sending...' : 'Reset Password'}
                                 </button>
                             </div>
 
@@ -96,10 +123,12 @@ const ForgotPassword = () => {
                             </p>
                             <p className={styles.emailSent}>{email}</p>
                             <button
-                                onClick={() => setSuccess(false)}
+                                onClick={handleResend}
                                 className={styles.resendButton}
+                                disabled={loading}
+                                style={{ opacity: loading ? 0.6 : 1 }}
                             >
-                                Didn't receive the email? Click to resend
+                                {loading ? 'Sending...' : "Didn't receive the email? Click to resend"}
                             </button>
                             <div className={styles.backToLogin}>
                                 <a href="/login" className={styles.backLink}>

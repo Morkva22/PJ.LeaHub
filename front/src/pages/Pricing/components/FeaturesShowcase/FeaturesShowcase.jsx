@@ -8,13 +8,13 @@ const FeaturesShowcase = () => {
         {
             icon: Brain,
             title: 'Built for Neurodivergent Minds',
-            description: "Unlike generic tools, Leantime's interface and workflows are specifically designed for ADHD, Dyslexia, and Autism. Reduce overwhelm with contextual reminders, emotion-based prioritization, and distraction management tools.",
+            description: "Unlike generic tools, LeaHub's interface and workflows are specifically designed for ADHD, Dyslexia, and Autism. Reduce overwhelm with contextual reminders, emotion-based prioritization, and distraction management tools.",
             bgColor: '#FFFEF0'
         },
         {
             icon: Target,
             title: 'From Tasks to Purpose',
-            description: "Transform scattered to-dos into meaningful work connected to strategic goals. Leantime's unique motivation framework helps you understand why tasks matter, not just what needs to be done.",
+            description: "Transform scattered to-dos into meaningful work connected to strategic goals. LeaHub's unique motivation framework helps you understand why tasks matter, not just what needs to be done.",
             bgColor: '#F0F8FF'
         },
         {
@@ -28,7 +28,7 @@ const FeaturesShowcase = () => {
     return (
         <section className={styles.featuresShowcase}>
             <h1 className={styles.showcaseTitle}>
-                Why Leantime Outperforms Traditional Task Managers
+                Why LeaHub Outperforms Traditional Task Managers
             </h1>
             <div className={styles.featuresGrid}>
                 {features.map((feature, index) => (

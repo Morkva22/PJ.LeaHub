@@ -30,7 +30,7 @@
     padding: 25px;
     border-radius: 8px;
     margin-bottom: 30px;
-    border-left: 4px solid #4caf50;
+    border-left: 4px solid #2d8659;
 }
 
 .introSection p {
@@ -44,7 +44,7 @@
     font-size: 2rem;
     margin: 2.5rem 0 1rem;
     color: #2e7d32;
-    border-bottom: 2px solid #4caf50;
+    border-bottom: 2px solid #2d8659;
     padding-bottom: 0.5rem;
 }
 
@@ -66,12 +66,12 @@
     padding: 10px 15px;
     background-color: #e8f5e9;
     border-radius: 6px;
-    border: 2px solid #4caf50;
+    border: 2px solid #347337;
     transition: all 0.3s ease;
 }
 
 .githubLink:hover {
-    background-color: #388e3c;
+    background-color: #2d8659;
     color: white;
     text-decoration: none;
     transform: translateY(-2px);
@@ -88,7 +88,7 @@
     margin-bottom: 1.2rem;
     padding: 15px;
     background-color: #f9fdf9;
-    border-left: 4px solid #66bb6a;
+    border-left: 4px solid #2ba32e;
     border-radius: 6px;
     display: flex;
     align-items: flex-start;
@@ -141,7 +141,7 @@
     margin-right: 15px;
     width: 24px;
     height: 24px;
-    background-color: #4caf50;
+    background-color: #2d8659;
     color: white;
     border-radius: 50%;
     font-size: 1rem;
@@ -153,7 +153,7 @@
 }
 
 .acknowledgmentBox {
-    background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+    background: linear-gradient(135deg, #2d8659 0%, #2e7d32 100%);
     color: white;
     padding: 30px;
     border-radius: 10px;

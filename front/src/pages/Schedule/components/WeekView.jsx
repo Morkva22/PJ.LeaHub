@@ -1,21 +1,78 @@
+import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import styles from './WeekView.module.css';
 
 export default function WeekView({ currentWeekStart, onWeekChange, onTimeSelect }) {
+    const [availableSlots, setAvailableSlots] = useState({});
+    const [loading, setLoading] = useState(false);
+
+    const API_URL = 'https://localhost:44378/api';
+
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
     const maxBookingDate = new Date();
     maxBookingDate.setMonth(maxBookingDate.getMonth() + 2);
 
-    const availableSlots = {
-        1: ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-        2: ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-        3: ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-        4: ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-        5: ['9:00', '14:00', '16:00'],
-        6: [],
-        0: []
+    useEffect(() => {
+        loadAvailableSlots();
+    }, [currentWeekStart]);
+
+    const loadAvailableSlots = async () => {
+        setLoading(true);
+        try {
+            const weekEnd = new Date(currentWeekStart);
+            weekEnd.setDate(weekEnd.getDate() + 6);
+
+            const startDate = currentWeekStart.toISOString().split('T')[0];
+            const endDate = weekEnd.toISOString().split('T')[0];
+
+            console.log('Loading slots from', startDate, 'to', endDate);
+
+            const response = await fetch(
+                `${API_URL}/booking/available-slots?startDate=${startDate}&endDate=${endDate}`
+            );
+
+            if (!response.ok) {
+                throw new Error('Failed to load available slots');
+            }
+
+            const data = await response.json();
+            console.log('Available slots:', data);
+
+            const slotsMap = {};
+            data.forEach(slot => {
+                const date = new Date(slot.date);
+                const dayOfWeek = date.getDay();
+                slotsMap[dayOfWeek] = slot.availableTimes.map(time => {
+                    const match = time.match(/(\d+):(\d+)(am|pm)/);
+                    if (match) {
+                        let hour = parseInt(match[1]);
+                        const minute = match[2];
+                        const ampm = match[3];
+                        if (ampm === 'pm' && hour !== 12) hour += 12;
+                        if (ampm === 'am' && hour === 12) hour = 0;
+                        return `${hour}:${minute}`;
+                    }
+                    return time;
+                });
+            });
+
+            setAvailableSlots(slotsMap);
+        } catch (error) {
+            console.error('Error loading slots:', error);
+            setAvailableSlots({
+                1: ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                2: ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                3: ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                4: ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                5: ['9:00', '14:00', '16:00'],
+                6: [],
+                0: []
+            });
+        } finally {
+            setLoading(false);
+        }
     };
 
     const getWeekDays = (startDate) => {
@@ -31,7 +88,7 @@ export default function WeekView({ currentWeekStart, onWeekChange, onTimeSelect 
     const isDateAvailable = (date) => {
         const dateTime = new Date(date);
         dateTime.setHours(0, 0, 0, 0);
-        return dateTime >= today && dateTime <= maxBookingDate && availableSlots[date.getDay()]?.length > 0;
+        return dateTime >= today && dateTime <= maxBookingDate && getDaySlots(date).length > 0;
     };
 
     const getDaySlots = (date) => {
@@ -68,8 +125,6 @@ export default function WeekView({ currentWeekStart, onWeekChange, onTimeSelect 
     };
 
     const weekDays = getWeekDays(currentWeekStart);
-
-    // Получаем месяц и год для отображения
     const currentMonth = currentWeekStart.toLocaleDateString('en-US', {
         month: 'long',
         year: 'numeric'
@@ -99,39 +154,43 @@ export default function WeekView({ currentWeekStart, onWeekChange, onTimeSelect 
                 </div>
             </div>
 
-            <div className={styles.weekGrid}>
-                {weekDays.map((date, idx) => {
-                    const isAvailable = isDateAvailable(date);
-                    const slots = getDaySlots(date);
-                    const dayName = date.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
-                    const dayNum = date.getDate();
+            {loading ? (
+                <div className={styles.loading}>Loading available slots...</div>
+            ) : (
+                <div className={styles.weekGrid}>
+                    {weekDays.map((date, idx) => {
+                        const isAvailable = isDateAvailable(date);
+                        const slots = getDaySlots(date);
+                        const dayName = date.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
+                        const dayNum = date.getDate();
 
-                    return (
-                        <div key={idx} className={styles.dayColumn}>
-                            <div className={styles.dayHeader}>
-                                <div className={styles.dayName}>{dayName}</div>
-                                <div className={styles.dayNumber}>{dayNum}</div>
-                            </div>
+                        return (
+                            <div key={idx} className={styles.dayColumn}>
+                                <div className={styles.dayHeader}>
+                                    <div className={styles.dayName}>{dayName}</div>
+                                    <div className={styles.dayNumber}>{dayNum}</div>
+                                </div>
 
-                            <div className={styles.slotsContainer}>
-                                {isAvailable ? (
-                                    slots.map(time => (
-                                        <button
-                                            key={time}
-                                            onClick={() => onTimeSelect(date, time)}
-                                            className={styles.slotButton}
-                                        >
-                                            {formatTime(time)}
-                                        </button>
-                                    ))
-                                ) : (
-                                    <div className={styles.noSlots}>—</div>
-                                )}
+                                <div className={styles.slotsContainer}>
+                                    {isAvailable ? (
+                                        slots.map(time => (
+                                            <button
+                                                key={time}
+                                                onClick={() => onTimeSelect(date, time)}
+                                                className={styles.slotButton}
+                                            >
+                                                {formatTime(time)}
+                                            </button>
+                                        ))
+                                    ) : (
+                                        <div className={styles.noSlots}>—</div>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    );
-                })}
-            </div>
+                        );
+                    })}
+                </div>
+            )}
         </div>
     );
 }

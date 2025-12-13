@@ -111,7 +111,7 @@
 .infoIcon {
     width: 1.25rem;
     height: 1.25rem;
-    color: #50C878;
+    color: #2d8659;
     flex-shrink: 0;
     margin-top: 0.125rem;
 }
@@ -129,7 +129,7 @@
 .sectionIcon {
     width: 1.25rem;
     height: 1.25rem;
-    color: #50C878;
+    color: #2d8659;
 }
 
 .form {
@@ -169,7 +169,7 @@
 
 .input:focus,
 .textarea:focus {
-    border-color: #50C878;
+    border-color: #2d8659;
     box-shadow: 0 0 0 3px rgba(80, 200, 120, 0.1);
 }
 
@@ -221,7 +221,7 @@
 .submitButton {
     flex: 1;
     padding: 0.75rem 1.5rem;
-    background-color: #50C878;
+    background-color: #2d8659;
     color: white;
     border: none;
     border-radius: 0.5rem;
@@ -241,6 +241,33 @@
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
+}
+.successBox {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.meetingLink {
+    display: block;
+    margin-top: 8px;
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.meetingLink:hover {
+    text-decoration: underline;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 16px;
 }
 
 @media (max-width: 640px) {

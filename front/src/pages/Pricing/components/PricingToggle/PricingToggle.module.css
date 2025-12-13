@@ -23,21 +23,21 @@
 .label {
     font-weight: 600;
     font-size: 16px;
-    color: var(--gray-dark);
+    color: silver;
     margin-bottom: 4px;
 }
 
 .toggleButton.active .label {
-    color: white;
+    color: white !important;
 }
 
 .subLabel {
     font-size: 12px;
-    color: var(--gray-dark);
+    color: silver;
 }
 
 .toggleButton.active .subLabel {
-    color: rgba(255, 255, 255, 0.9);
+    color: white !important;
 }
 
 @media (max-width: 768px) {

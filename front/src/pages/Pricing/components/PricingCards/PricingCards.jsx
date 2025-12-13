@@ -1,15 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import PricingCard from '../PricingCard/PricingCard';
 import styles from './PricingCards.module.css';
 
 const PricingCards = ({ billingCycle = 'monthly' }) => {
+    const navigate = useNavigate();
+
     const plans = {
         monthly: {
             title: 'Monthly Subscription',
-            subtitle: 'Leantime Pro',
+            subtitle: 'LeaHub Pro',
             price: '$10',
             period: 'user/month',
-            billingInfo: 'Billed Monthly',
+            billing: 'Billed Monthly',
             features: [
                 'All features included',
                 'Unlimited to-dos and projects',
@@ -21,10 +24,10 @@ const PricingCards = ({ billingCycle = 'monthly' }) => {
         },
         yearly: {
             title: 'Yearly Subscription',
-            subtitle: 'Leantime Pro',
+            subtitle: 'LeaHub Pro',
             price: '$96',
             period: 'user/year',
-            billingInfo: 'Billed Yearly',
+            billing: 'Billed Yearly',
             features: [
                 'All features included',
                 'Unlimited to-dos and projects',
@@ -39,9 +42,16 @@ const PricingCards = ({ billingCycle = 'monthly' }) => {
 
     const currentPlan = plans[billingCycle];
 
+    const handleCtaClick = () => {
+        navigate('/404');
+    };
+
     return (
         <div className={styles.container}>
-            <PricingCard {...currentPlan} />
+            <PricingCard
+                plan={currentPlan}
+                onCtaClick={handleCtaClick}
+            />
         </div>
     );
 };

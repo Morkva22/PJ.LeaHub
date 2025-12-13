@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
-import styles from './ Register.module.css';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../lib/context/AuthContext';
+import { useToast } from '../../../lib/context/ToastContext';
+import styles from './Register.module.css';
 
 const Register = () => {
+    const navigate = useNavigate();
+    const { register } = useAuth();
+    const { showToast } = useToast();
+
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -10,12 +17,13 @@ const Register = () => {
     });
     const [errors, setErrors] = useState({});
     const [agreedToTerms, setAgreedToTerms] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const validateEmail = (email) => {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const newErrors = {};
 
@@ -46,7 +54,26 @@ const Register = () => {
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
-            console.log('Registration successful', formData);
+            setLoading(true);
+            try {
+                await register(
+                    formData.email,
+                    formData.password,
+                    formData.username,
+                    ''
+                );
+                showToast('Account created successfully!', 'success');
+                setTimeout(() => {
+                    navigate('/login', { state: { fromRegister: true } });
+                }, 500);
+            } catch (err) {
+                showToast(err.message || 'Registration failed. Please try again.', 'error');
+                setErrors({
+                    email: err.message || 'Registration failed. Please try again.'
+                });
+            } finally {
+                setLoading(false);
+            }
         }
     };
 
@@ -90,6 +117,7 @@ const Register = () => {
                                 onChange={handleChange}
                                 className={styles.input}
                                 placeholder="johndoe"
+                                disabled={loading}
                             />
                             {errors.username && (
                                 <p className={styles.errorText}>{errors.username}</p>
@@ -105,6 +133,7 @@ const Register = () => {
                                 onChange={handleChange}
                                 className={styles.input}
                                 placeholder="you@example.com"
+                                disabled={loading}
                             />
                         </div>
 
@@ -117,6 +146,7 @@ const Register = () => {
                                 onChange={handleChange}
                                 className={styles.input}
                                 placeholder="••••••••"
+                                disabled={loading}
                             />
                             {errors.password && (
                                 <p className={styles.errorText}>{errors.password}</p>
@@ -132,6 +162,7 @@ const Register = () => {
                                 onChange={handleChange}
                                 className={styles.input}
                                 placeholder="••••••••"
+                                disabled={loading}
                             />
                             {errors.confirmPassword && (
                                 <p className={styles.errorText}>{errors.confirmPassword}</p>
@@ -150,6 +181,7 @@ const Register = () => {
                                     }
                                 }}
                                 className={styles.checkbox}
+                                disabled={loading}
                             />
                             <label htmlFor="terms" className={styles.checkboxLabel}>
                                 I agree to the{' '}
@@ -169,8 +201,10 @@ const Register = () => {
                         <button
                             onClick={handleSubmit}
                             className={styles.submitButton}
+                            disabled={loading}
+                            style={{ opacity: loading ? 0.6 : 1 }}
                         >
-                            Create Account
+                            {loading ? 'Creating Account...' : 'Create Account'}
                         </button>
                     </div>
 

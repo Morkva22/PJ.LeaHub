@@ -10,7 +10,13 @@
     grid-template-columns: 1fr 1fr;
     gap: 60px;
 }
-
+.illustration img,
+.photo img {
+    width: 200px;  /* или любой размер */
+    height: 200px;
+    object-fit: cover;  /* обрезает фото, сохраняя пропорции */
+    border-radius: 8px;  /* по желанию - скругленные углы */
+}
 .post h3 {
     margin: 20px 0 12px;
     font-size: 28px;
@@ -22,7 +28,7 @@
 .img {
     width: 100%;
     height: 300px;
-    background: linear-gradient(45deg, #50C878, #76a820);
+    background: linear-gradient(45deg, #2d8659, #256e4a);
     border-radius: 16px;
     color: white;
     font-size: 20px;

@@ -1,19 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../../../lib/context/AuthContext';
+import { useToast } from '../../../lib/context/ToastContext';
 import styles from './Login.module.css';
 
 const Login = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { login } = useAuth();
+    const { showToast } = useToast();
+    const hasShownRegistrationToast = useRef(false);
+
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
     const [errors, setErrors] = useState({});
     const [rememberMe, setRememberMe] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        if (location.state?.fromRegister && !hasShownRegistrationToast.current) {
+            hasShownRegistrationToast.current = true;
+            showToast('Registration successful! Please sign in.', 'success');
+            window.history.replaceState({}, document.title);
+        }
+    }, [location.state, showToast]);
 
     const validateEmail = (email) => {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const newErrors = {};
 
@@ -30,7 +48,21 @@ const Login = () => {
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
-            console.log('Login successful', formData, 'Remember me:', rememberMe);
+            setLoading(true);
+            try {
+                await login(formData.email, formData.password);
+                showToast('Successfully logged in!', 'success');
+                setTimeout(() => {
+                    navigate('/');
+                }, 500);
+            } catch (err) {
+                showToast(err.message || 'Invalid email or password', 'error');
+                setErrors({
+                    email: err.message || 'Invalid email or password'
+                });
+            } finally {
+                setLoading(false);
+            }
         }
     };
 
@@ -74,6 +106,7 @@ const Login = () => {
                                 onChange={handleChange}
                                 className={styles.input}
                                 placeholder="you@example.com"
+                                disabled={loading}
                             />
                         </div>
 
@@ -86,6 +119,7 @@ const Login = () => {
                                 onChange={handleChange}
                                 className={styles.input}
                                 placeholder="••••••••"
+                                disabled={loading}
                             />
                             {errors.password && (
                                 <p className={styles.errorText}>{errors.password}</p>
@@ -100,6 +134,7 @@ const Login = () => {
                                     checked={rememberMe}
                                     onChange={(e) => setRememberMe(e.target.checked)}
                                     className={styles.checkbox}
+                                    disabled={loading}
                                 />
                                 <label htmlFor="remember" className={styles.checkboxLabel}>
                                     Remember me
@@ -113,8 +148,10 @@ const Login = () => {
                         <button
                             onClick={handleSubmit}
                             className={styles.submitButton}
+                            disabled={loading}
+                            style={{ opacity: loading ? 0.6 : 1 }}
                         >
-                            Sign In
+                            {loading ? 'Signing In...' : 'Sign In'}
                         </button>
                     </div>
 

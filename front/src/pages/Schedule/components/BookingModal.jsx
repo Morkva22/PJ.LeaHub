@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { X, Calendar, Clock, Video } from 'lucide-react';
+import { X, Calendar, Video } from 'lucide-react';
 import styles from './BookingModal.module.css';
 
-export default function BookingModal({ selectedDate, selectedTime, onClose, supabase }) {
+export default function BookingModal({ selectedDate, selectedTime, onClose }) {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -13,6 +13,9 @@ export default function BookingModal({ selectedDate, selectedTime, onClose, supa
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
+
+    const API_URL = 'https://localhost:44378/api';
 
     const formatDateFull = (date) => {
         return date.toLocaleDateString('en-US', {
@@ -39,41 +42,58 @@ export default function BookingModal({ selectedDate, selectedTime, onClose, supa
             hour += 1;
             minute -= 60;
         }
-        return `${hour}:${minute.toString().padStart(2, '0')}`;
+        const ampm = hour >= 12 ? 'pm' : 'am';
+        const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
+        return `${displayHour}:${minute.toString().padStart(2, '0')}${ampm}`;
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
         setError(null);
+        setSuccess(null);
 
         try {
             const bookingData = {
-                meeting_date: selectedDate.toISOString().split('T')[0],
-                meeting_time: selectedTime,
-                meeting_end_time: getEndTime(selectedTime),
-                first_name: formData.firstName,
-                last_name: formData.lastName,
+                firstName: formData.firstName,
+                lastName: formData.lastName,
                 email: formData.email,
-                current_tools: formData.tools || null,
-                hosting_preference: formData.hosting || null,
-                additional_notes: formData.notes || null,
-                status: 'pending',
-                created_at: new Date().toISOString()
+                meetingDate: selectedDate.toISOString().split('T')[0],
+                meetingTime: selectedTime,
+                tools: formData.tools || null,
+                hostingPreference: formData.hosting || null,
+                additionalNotes: formData.notes || null
             };
 
-            const { data, error: supabaseError } = await supabase
-                .from('bookings')
-                .insert([bookingData])
-                .select();
+            console.log('Sending booking:', bookingData);
 
-            if (supabaseError) throw supabaseError;
+            const response = await fetch(`${API_URL}/booking`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bookingData)
+            });
 
-            alert('Meeting scheduled successfully! Check your email for confirmation.');
-            onClose();
+            const result = await response.json();
+            console.log('Response:', result);
+
+            if (!response.ok) {
+                throw new Error(result.message || 'Failed to schedule meeting');
+            }
+
+            setSuccess({
+                message: result.message,
+                meetingLink: result.meetingLink
+            });
+
+            setTimeout(() => {
+                onClose();
+            }, 5000);
+
         } catch (err) {
             console.error('Booking error:', err);
-            setError('Failed to schedule meeting. Please try again.');
+            setError(err.message || 'Failed to schedule meeting. Please try again.');
         } finally {
             setIsSubmitting(false);
         }
@@ -92,7 +112,7 @@ export default function BookingModal({ selectedDate, selectedTime, onClose, supa
                         <div className={styles.dateTime}>
                             <span>{formatDateFull(selectedDate)}</span>
                             <span className={styles.separator}>·</span>
-                            <span>{formatTime(selectedTime)} – {formatTime(getEndTime(selectedTime))}</span>
+                            <span>{formatTime(selectedTime)} – {getEndTime(selectedTime)}</span>
                         </div>
                         <p className={styles.timezone}>(GMT+02:00) Eastern European Time - Kyiv</p>
                     </div>
@@ -113,6 +133,22 @@ export default function BookingModal({ selectedDate, selectedTime, onClose, supa
                         </div>
                     )}
 
+                    {success && (
+                        <div className={styles.successBox}>
+                            <p>{success.message}</p>
+                            {success.meetingLink && (
+                                <a
+                                    href={success.meetingLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={styles.meetingLink}
+                                >
+                                    🎥 Open Google Meet: {success.meetingLink}
+                                </a>
+                            )}
+                        </div>
+                    )}
+
                     <h4 className={styles.sectionTitle}>
                         <Calendar className={styles.sectionIcon} />
                         Your Contact Information
@@ -130,7 +166,7 @@ export default function BookingModal({ selectedDate, selectedTime, onClose, supa
                                     onChange={handleInputChange}
                                     className={styles.input}
                                     placeholder="Markel"
-                                    disabled={isSubmitting}
+                                    disabled={isSubmitting || success}
                                 />
                             </div>
 
@@ -144,7 +180,7 @@ export default function BookingModal({ selectedDate, selectedTime, onClose, supa
                                     onChange={handleInputChange}
                                     className={styles.input}
                                     placeholder="May"
-                                    disabled={isSubmitting}
+                                    disabled={isSubmitting || success}
                                 />
                             </div>
                         </div>
@@ -159,7 +195,7 @@ export default function BookingModal({ selectedDate, selectedTime, onClose, supa
                                 onChange={handleInputChange}
                                 className={styles.input}
                                 placeholder="marcusmay14@gmail.com"
-                                disabled={isSubmitting}
+                                disabled={isSubmitting || success}
                             />
                         </div>
 
@@ -172,7 +208,7 @@ export default function BookingModal({ selectedDate, selectedTime, onClose, supa
                                 onChange={handleInputChange}
                                 className={styles.input}
                                 placeholder="Optional"
-                                disabled={isSubmitting}
+                                disabled={isSubmitting || success}
                             />
                             <span className={styles.hint}>Optional</span>
                         </div>
@@ -188,7 +224,7 @@ export default function BookingModal({ selectedDate, selectedTime, onClose, supa
                                 onChange={handleInputChange}
                                 className={styles.input}
                                 placeholder="Optional"
-                                disabled={isSubmitting}
+                                disabled={isSubmitting || success}
                             />
                             <span className={styles.hint}>Optional</span>
                         </div>
@@ -202,7 +238,7 @@ export default function BookingModal({ selectedDate, selectedTime, onClose, supa
                                 rows={3}
                                 className={styles.textarea}
                                 placeholder="Optional"
-                                disabled={isSubmitting}
+                                disabled={isSubmitting || success}
                             />
                             <span className={styles.hint}>Optional</span>
                         </div>
@@ -219,9 +255,9 @@ export default function BookingModal({ selectedDate, selectedTime, onClose, supa
                             <button
                                 type="submit"
                                 className={styles.submitButton}
-                                disabled={isSubmitting}
+                                disabled={isSubmitting || success}
                             >
-                                {isSubmitting ? 'Scheduling...' : 'Confirm Meeting'}
+                                {isSubmitting ? 'Scheduling...' : success ? '✓ Scheduled!' : 'Confirm Meeting'}
                             </button>
                         </div>
                     </form>

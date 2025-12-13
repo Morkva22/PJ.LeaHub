@@ -6,7 +6,7 @@ const PricingHeader = () => {
         <div className={styles.container}>
             <h1 className={styles.title}>Simple pricing that makes sense</h1>
             <p className={styles.subtitle}>
-                Leantime combines behavioral science, motivation psychology, and AI
+                LeaHub combines behavioral science, motivation psychology, and AI
                 to help neurodivergent minds thrive.
             </p>
             <p className={styles.description}>
@@ -14,7 +14,7 @@ const PricingHeader = () => {
             </p>
             <div className={styles.badge}>
                 <span>Monthly Subscription</span>
-                <span>Leantime Inc</span>
+                <span>LeaHub Inc</span>
             </div>
         </div>
     );

@@ -8,7 +8,12 @@
     max-width: 1200px;
     margin: 0 auto;
 }
-
+.dashboardImage {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
 .featuresHeroGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -23,7 +28,7 @@
 .imagePlaceholder {
     width: 100%;
     aspect-ratio: 16/10;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #2d8659 0%, #764ba2 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,7 +45,7 @@
 .featuresTitle {
     font-size: 42px;
     font-weight: 600;
-    color: #76a820;
+    color: #256e4a;
     line-height: 1.2;
     margin-bottom: 24px;
 }
@@ -57,7 +62,7 @@
 }
 
 .featuresCta {
-    background: #50C878;
+    background: #2d8659;
     color: white;
     border: none;
     padding: 16px 32px;
@@ -72,7 +77,7 @@
 }
 
 .featuresCta:hover {
-    background: #3da866;
+    background: #256e4a;
 }
 
 .ctaArrow {

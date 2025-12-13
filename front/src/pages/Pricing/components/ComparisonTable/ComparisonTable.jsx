@@ -15,14 +15,14 @@ const ComparisonTable = () => {
             <div className={styles.comparisonContainer}>
                 <h2 className={styles.comparisonTitle}>
                     The Difference is Clear:<br />
-                    Leantime vs. Traditional<br />
+                    LeaHub vs. Traditional<br />
                     Tools
                 </h2>
                 <div className={styles.comparisonTableWrapper}>
                     <div className={styles.comparisonTable}>
                         <div className={styles.tableHeader}>
                             <div className={styles.headerCell}>Basic Task Managers</div>
-                            <div className={styles.headerCell}>Leantime</div>
+                            <div className={styles.headerCell}>LeaHub</div>
                         </div>
                         {comparisons.map((row, index) => (
                             <div key={index} className={styles.tableRow}>

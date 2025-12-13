@@ -9,7 +9,7 @@
 }
 
 .primary {
-    background: #50C878;
+    background: #2d8659;
     color: white;
 }
 
@@ -19,12 +19,12 @@
 
 .secondary {
     background: transparent;
-    color: #50C878;
-    border: 2px solid #50C878;
+    color: #2d8659;
+    border: 2px solid #2e7a49;
 }
 
 .secondary:hover {
-    background: #3da866;
+    background: #24593b;
     color: white;
 }
 

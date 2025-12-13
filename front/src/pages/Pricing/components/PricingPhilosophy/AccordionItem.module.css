@@ -39,7 +39,7 @@
 }
 
 .accordionButton.active .accordionIcon {
-    color: #50C878;
+    color: #2d8659;
     transform: rotate(45deg);
 }
 
@@ -78,6 +78,6 @@
 }
 
 .accordionInner strong {
-    color: #50C878;
+    color: #2d8659;
     font-weight: 600;
 }

@@ -1,0 +1,126 @@
+.hero {
+    background: var(--primary);
+    color: white;
+    padding: 80px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
+.text h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+}
+
+.text p {
+    font-size: 18px;
+    opacity: 0.95;
+    margin: 0;
+}
+
+.illustration {
+    position: relative;
+    width: 250px;
+    height: 180px;
+    flex-shrink: 0;
+}
+
+.desk {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 40px;
+    background: white;
+    border-radius: 4px;
+}
+
+.person {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.personHead {
+    width: 50px;
+    height: 50px;
+    background: var(--warning);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 45px;
+    left: -25px;
+}
+
+.personBody {
+    width: 60px;
+    height: 50px;
+    background: var(--info);
+    border-radius: 8px 8px 0 0;
+    position: absolute;
+    bottom: 0;
+    left: -30px;
+}
+
+.laptop {
+    position: absolute;
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 50px;
+    background: var(--text);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.laptop::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    background: var(--gray-medium);
+    border-radius: 2px;
+}
+
+.pixel {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+.pixel1 { top: 20px; right: 40px; }
+.pixel2 { top: 60px; right: 20px; }
+.pixel3 { top: 100px; right: 60px; }
+.pixel4 { top: 40px; left: 20px; }
+.pixel5 { top: 80px; left: 40px; }
+
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .text h1 {
+        font-size: 36px;
+    }
+
+    .illustration {
+        width: 200px;
+        height: 150px;
+    }
+}

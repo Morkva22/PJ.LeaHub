@@ -10,7 +10,7 @@ const PricingPhilosophy = () => {
             title: "Why We Don't Offer a Free SaaS Version",
             content: (
                 <>
-                    <p>Unlike most SaaS companies, Leantime maintains an open source version that anyone can download and self-host for free. This commitment to open-source reflects our core values of accessibility and transparency.</p>
+                    <p>Unlike most SaaS companies, LeaHub maintains an open source version that anyone can download and self-host for free. This commitment to open-source reflects our core values of accessibility and transparency.</p>
                     <p>We've chosen to eliminate our limited free SaaS tier because:</p>
                     <ul>
                         <li><strong>It creates confusion.</strong> Having both a free SaaS tier and an open-source version created an unnecessary decision point for users.</li>
@@ -53,8 +53,8 @@ const PricingPhilosophy = () => {
             content: (
                 <>
                     <p>Traditional project management tools were built for a neurotypical world. This leaves everyone processes information the same way and-but options for the working rhythm -like has number of tasks completed rather than meaningful progress goals.</p>
-                    <p>Leantime is built differently. Our philosophy is committed to reading a tool that works with your brain, not against it.</p>
-                    <p>By supporting Leantime with your subscription, you're not just getting a project management tool — you're investing in a more inclusive future of productivity that recognizes and celebrates cognitive diversity.</p>
+                    <p>LeaHub is built differently. Our philosophy is committed to reading a tool that works with your brain, not against it.</p>
+                    <p>By supporting LeaHub with your subscription, you're not just getting a project management tool — you're investing in a more inclusive future of productivity that recognizes and celebrates cognitive diversity.</p>
                 </>
             )
         },
@@ -69,16 +69,16 @@ const PricingPhilosophy = () => {
             )
         },
         {
-            title: "What's included in the open source version of Leantime?",
+            title: "What's included in the open source version of LeaHub?",
             content: (
                 <>
-                    <p>The open source version of Leantime includes everything in our free plan.</p>
+                    <p>The open source version of LeaHub includes everything in our free plan.</p>
                     <p>We now also offer our additional features like Retinacy management, Class in Project Management, Whiteboards, Todos, Promotion & Content it goes to our Plugin Marketplace for the open source version available for download on github. Subscriber and more.</p>
                 </>
             )
         },
         {
-            title: "How long does it take to setup Leantime?",
+            title: "How long does it take to setup LeaHun?",
             content: (
                 <>
                     <p>If you try out our cloud-hosted plans, we're have users get projects up and running in less than 10 minutes.</p>
@@ -107,7 +107,7 @@ const PricingPhilosophy = () => {
                     <div className={styles.leftColumn}>
                         <h2 className={styles.title}>Pricing Philosophy</h2>
                         <p className={styles.description}>
-                            At Leantime, we believe project management tools should be both powerful and accessible. After careful consideration and valuable feedback from our community, we've made the decision to simplify our pricing structure to a single, all-inclusive plan. Here's why:
+                            At LeaHub, we believe project management tools should be both powerful and accessible. After careful consideration and valuable feedback from our community, we've made the decision to simplify our pricing structure to a single, all-inclusive plan. Here's why:
                         </p>
                     </div>
                     <div className={styles.rightColumn}>

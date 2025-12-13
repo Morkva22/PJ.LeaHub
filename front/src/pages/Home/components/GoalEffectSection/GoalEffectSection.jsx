@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './GoalEffectSection.module.css';
+import r34 from '../../../../assets/images/r34.png';
 
 const GoalEffectSection = () => {
     return (
         <section className={styles.section}>
             <div className={styles.container}>
                 <div className={styles.imageWrapper}>
-                    <div className={styles.placeholder}>Фото 6: Иллюстрация "The Goal Effect" (человек пишет цели)</div>
+                    <img src={r34} alt="The Goal Effect illustration" className={styles.image} />
                 </div>
                 <div className={styles.textContent}>
                     <h2>The Goal Effect: Where Motivation Meets To-Do Lists</h2>

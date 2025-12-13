@@ -19,7 +19,7 @@ const PricingPage = () => {
     const plans = {
         monthly: {
             title: 'Monthly Subscription',
-            subtitle: 'Leantime Pro',
+            subtitle: 'LeaHub Pro',
             price: '$10',
             period: 'user / month',
             billing: 'Billed Monthly'

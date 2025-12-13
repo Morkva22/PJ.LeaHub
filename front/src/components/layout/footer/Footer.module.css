@@ -1,5 +1,5 @@
 .footer {
-    background: linear-gradient(135deg, #1e3a8a 0%, #0d9488 100%);
+    background: linear-gradient(135deg, black 0%, #0d9488 100%);
     color: white;
     padding: 80px 24px 40px;
     font-family: 'Inter', system-ui, sans-serif;
@@ -20,7 +20,7 @@
 .logo {
     font-size: 32px;
     font-weight: 800;
-    color: #50C878;
+    color: #2d8659;
     text-decoration: none;
     display: block;
     margin-bottom: 16px;
@@ -34,7 +34,7 @@
 }
 
 .email {
-    color: #50C878;
+    color: #2d8659;
     text-decoration: none;
     font-weight: 500;
 }
@@ -56,7 +56,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 20px;
-    color: #50C878;
+    color: #2d8659;
 }
 
 .column a {
@@ -108,7 +108,7 @@
 }
 
 .techstars {
-    color: #50C878;
+    color: #2d8659;
     font-weight: 800;
     font-size: 18px;
     margin-top: 20px;

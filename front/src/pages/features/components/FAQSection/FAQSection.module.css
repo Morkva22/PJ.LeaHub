@@ -31,12 +31,12 @@
 }
 
 .faqItem:hover {
-    border-color: #2B7A99;
+    border-color: #2d8659;
 }
 
 .question {
     width: 100%;
-    background: #2B7A99;
+    background: #2d8659;
     border: none;
     padding: 20px 24px;
     display: flex;
@@ -51,11 +51,11 @@
 }
 
 .question:hover {
-    background: #236582;
+    background: #256e4a;
 }
 
 .question.active {
-    background: #1a4d63;
+    background: #1e5a3d;
 }
 
 .icon {

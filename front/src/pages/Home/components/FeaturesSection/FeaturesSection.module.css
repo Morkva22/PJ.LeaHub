@@ -8,14 +8,26 @@
     margin: 0 auto;
     text-align: center;
 }
-
+.featureImage {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
 h2 {
     font-size: 44px;
     font-weight: 800;
     color: #444;
     margin-bottom: 16px;
 }
-
+.illustration img,
+.photo img {
+    width: 200px;  /* или любой размер */
+    height: 200px;
+    object-fit: cover;  /* обрезает фото, сохраняя пропорции */
+    border-radius: 8px;  /* по желанию - скругленные углы */
+}
 .subtitle {
     font-size: 20px;
     color: #666;
@@ -39,7 +51,7 @@ h2 {
 .placeholder {
     width: 100%;
     height: 180px;
-    background: linear-gradient(135deg, #50C878, #76a820);
+    background: linear-gradient(135deg, #2d8659, #256e4a);
     border-radius: 12px;
     margin-bottom: 24px;
     display: flex;

@@ -29,7 +29,7 @@
 
 .title {
     font-size: 20px;
-    color: #50C878;
+    color: #2d8659;
     margin-bottom: 12px;
     font-weight: 500;
     line-height: 1.4;
@@ -47,7 +47,7 @@
 }
 
 .category {
-    color: #50C878;
+    color: #2d8659;
     font-weight: 500;
 }
 
@@ -61,7 +61,7 @@
 .readMore {
     background: none;
     border: none;
-    color: #50C878;
+    color: #2d8659;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -108,7 +108,7 @@
 
 .smallTitle {
     font-size: 15px;
-    color: #50C878;
+    color: #2d8659;
     font-weight: 500;
     line-height: 1.4;
     margin: 0;

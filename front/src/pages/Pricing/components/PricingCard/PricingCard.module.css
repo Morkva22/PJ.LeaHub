@@ -1,115 +1,125 @@
 .card {
     background: white;
-    border-radius: 20px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     margin-bottom: 30px;
-    border: 1px solid var(--gray-medium);
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    min-height: 280px;
+    border: 2px solid #e9ecef;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 .leftSide {
-    background: linear-gradient(135deg, var(--primary) 0%, #3da866 100%);
+    background: linear-gradient(135deg, #2d8659 0%, #1a6737 100%);
     padding: 40px 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     text-align: center;
     color: white;
 }
 
 .title {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 700;
     margin-bottom: 8px;
+    color: white !important;
 }
 
 .subtitle {
-    font-size: 16px;
-    opacity: 0.9;
+    font-size: 15px;
+    opacity: 0.95;
+    line-height: 1.4;
+    color: white !important;
 }
 
 .rightSide {
-    padding: 40px 50px;
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
+    padding: 40px;
+}
+
+.planContent {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
     align-items: center;
 }
 
 .features {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .feature {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 12px;
 }
 
 .checkIcon {
     flex-shrink: 0;
+    margin-top: 2px;
 }
 
 .feature span {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--text);
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 .priceSection {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    min-width: 200px;
+    gap: 24px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    min-width: 220px;
+    border: 2px solid #e9ecef;
 }
 
 .priceWrapper {
     display: flex;
-    align-items: baseline;
+    align-items: flex-start;
     justify-content: center;
     gap: 4px;
 }
 
 .dollar {
-    font-size: 14px;
-    color: var(--gray-dark);
+    font-size: 24px;
+    color: #333;
+    font-weight: 600;
+    margin-top: 8px;
 }
 
 .price {
-    font-size: 56px;
+    font-size: 64px;
     font-weight: 800;
     color: #333;
     line-height: 1;
 }
 
 .period {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--gray-dark);
-    margin-top: 8px;
     text-align: center;
+    margin-top: -8px;
 }
 
 .billing {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--gray-dark);
-    margin-top: 4px;
     text-align: center;
 }
 
 .ctaButton {
-    background: #3d8167;
+    background: #2d8659;
     color: white;
     border: none;
-    border-radius: 12px;
-    padding: 16px 32px;
+    border-radius: 10px;
+    padding: 16px 40px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -118,26 +128,40 @@
 }
 
 .ctaButton:hover {
-    background: #3da866;
+    background: #256e4a;
+    transform: scale(1.02);
 }
 
-@media (max-width: 1024px) {
-    .card {
+@media (max-width: 968px) {
+    .planContent {
         grid-template-columns: 1fr;
-    }
-
-    .rightSide {
-        flex-direction: column;
         gap: 30px;
     }
 
-    .features {
-        grid-template-columns: 1fr;
+    .priceSection {
+        order: -1;
     }
 }
 
 @media (max-width: 768px) {
+    .card {
+        margin-bottom: 20px;
+    }
+
     .rightSide {
         padding: 30px 20px;
+    }
+
+    .priceWrapper {
+        gap: 2px;
+    }
+
+    .dollar {
+        font-size: 20px;
+        margin-top: 6px;
+    }
+
+    .price {
+        font-size: 52px;
     }
 }

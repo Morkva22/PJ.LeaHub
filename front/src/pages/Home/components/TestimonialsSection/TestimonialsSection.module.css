@@ -9,10 +9,16 @@
     padding: 0 20px;
     text-align: center;
 }
-
+.illustration img,
+.photo img {
+    width: 200px;  /* или любой размер */
+    height: 200px;
+    object-fit: cover;  /* обрезает фото, сохраняя пропорции */
+    border-radius: 8px;  /* по желанию - скругленные углы */
+}
 h2 {
     font-size: 2.5rem;
-    color: #50C878;
+    color: #2d8659;
     margin-bottom: 40px;
 }
 
@@ -28,6 +34,6 @@ h2 {
 cite {
     display: block;
     margin-top: 20px;
-    color: #3da866;
+    color: #2d8659;
     font-weight: 600;
 }

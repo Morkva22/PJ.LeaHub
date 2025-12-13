@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import styles from './WorkDashboardSection2.module.css';
+import w1 from '../../../../assets/images/w1.jpg';
+import w2 from '../../../../assets/images/w2.png';
+import w3 from '../../../../assets/images/w3.png';
+import w4 from '../../../../assets/images/w4.png';
+import w5 from '../../../../assets/images/w5.png';
 
 const tabs = [
     {
@@ -7,35 +12,35 @@ const tabs = [
         label: 'My Work Dashboard',
         title: 'All Your Work In Your Personal View',
         text: 'See all your work across all your projects. Your Work Dashboard allows you to customize the widgets to your priorities and see your tasks across all the work you do.',
-        img: 'Фото 1: Дашборд с задачами'
+        img: w1
     },
     {
         id: 'timeblocking',
         label: 'Time Blocking',
         title: 'Use Time Boxing to Schedule Your Work',
         text: 'Time blocking is a known productivity tip to help you stay on task and even start challenging work. Import your iCal link and schedule tasks in between meetings and other events.',
-        img: 'Фото 2: Календарь Time Blocking'
+        img: w2
     },
     {
         id: 'notes',
         label: 'Notes',
         title: 'Personal Note Taking',
         text: 'This Notes view stays on your Work Dashboard. Visible only to you because there are always going to be things that come up but don\'t belong in the projects docs.',
-        img: 'Фото 3: Заметки'
+        img: w3
     },
     {
         id: 'ai',
         label: 'AI Prioritization',
         title: 'Rate your tasks for better prioritization',
         text: 'Tell us how you really feel. Rate your tasks on an emoji rating scale from red angry swearing face to elated unicorn — those rare tasks you\'d like to see more often. We then prioritize your tasks based on your interest.',
-        img: 'Фото 4: AI приоритизация'
+        img: w4
     },
     {
         id: 'whiteboards',
         label: 'Whiteboards',
         title: 'Create Visuals for Your Thoughts',
         text: 'With built in whiteboards, you can easily create mind maps, wireframes, or other visual representations of your thoughts.',
-        img: 'Фото 5: Whiteboard'
+        img: w5
     }
 ];
 
@@ -67,7 +72,11 @@ const WorkDashboardSection2 = () => {
                         <p>{current.text}</p>
                     </div>
                     <div className={styles.imageWrapper}>
-                        <div className={styles.placeholder}>{current.img}</div>
+                        <img
+                            src={current.img}
+                            alt={current.title}
+                            className={styles.image}
+                        />
                     </div>
                 </div>
             </div>

@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './PricingCard.module.css';
 
 const PricingCard = ({ plan }) => {
+    const navigate = useNavigate();
+
     const features = [
         'All features included',
         'Unlimited to-dos and projects',
@@ -9,6 +12,10 @@ const PricingCard = ({ plan }) => {
         '500 AI credits per month',
         '14-day free trial'
     ];
+
+    const handleTrialClick = () => {
+        navigate('/404');
+    };
 
     return (
         <div className={styles.card}>
@@ -45,7 +52,7 @@ const PricingCard = ({ plan }) => {
                     <div className={styles.period}>{plan.period}</div>
                     <div className={styles.billing}>{plan.billing}</div>
 
-                    <button className={styles.ctaButton}>
+                    <button className={styles.ctaButton} onClick={handleTrialClick}>
                         Start your free trial
                     </button>
                 </div>

@@ -1,51 +1,17 @@
 import { MessageSquare, Trash2, Clock } from 'lucide-react';
-import { useState, useEffect } from 'react';
 import styles from './ChatHistory.module.css';
 
-export default function ChatHistory({ onSelectChat, onDeleteChat }) {
-    const [chats, setChats] = useState([]);
-
-    useEffect(() => {
-        loadChats();
-    }, []);
-
-    const loadChats = () => {
-        const savedChats = JSON.parse(localStorage.getItem('aiChats') || '[]');
-        const parsedChats = savedChats.map(chat => {
-            const firstUserMsg = chat.messages.find(m => m.type === 'user');
-            const firstBotMsg = chat.messages.find(m => m.type === 'bot' && m.id !== 1);
-
-            let preview = '';
-            if (firstUserMsg) {
-                preview = `You: ${firstUserMsg.text}`;
-                if (firstBotMsg) {
-                    preview += ` • AI: ${firstBotMsg.text.slice(0, 50)}...`;
-                }
-            }
-
-            return {
-                ...chat,
-                preview: preview || chat.preview,
-                timestamp: new Date(chat.timestamp),
-                messages: chat.messages.map(msg => ({
-                    ...msg,
-                    timestamp: new Date(msg.timestamp)
-                }))
-            };
-        });
-        setChats(parsedChats);
-    };
-
-    const handleDelete = (e, chatId) => {
+export default function ChatHistory({ conversations, onSelectChat, onDeleteChat, currentConversationId }) {
+    const handleDelete = (e, conversationId) => {
         e.stopPropagation();
-        const confirmed = ('Are you sure you want to delete this conversation?');
+        const confirmed = window.confirm('Are you sure you want to delete this conversation?');
         if (confirmed) {
-            onDeleteChat(chatId);
-            loadChats();
+            onDeleteChat(conversationId);
         }
     };
 
-    const formatTimestamp = (date) => {
+    const formatTimestamp = (dateString) => {
+        const date = new Date(dateString);
         const now = new Date();
         const diff = now - date;
         const hours = Math.floor(diff / 3600000);
@@ -65,10 +31,10 @@ export default function ChatHistory({ onSelectChat, onDeleteChat }) {
             </div>
 
             <div className={styles.list}>
-                {chats.map((chat) => (
+                {conversations.map((chat) => (
                     <div
                         key={chat.id}
-                        className={styles.chatItem}
+                        className={`${styles.chatItem} ${currentConversationId === chat.id ? styles.active : ''}`}
                         onClick={() => onSelectChat(chat)}
                     >
                         <div className={styles.chatHeader}>
@@ -85,16 +51,16 @@ export default function ChatHistory({ onSelectChat, onDeleteChat }) {
                             </button>
                         </div>
 
-                        <p className={styles.preview}>{chat.preview}</p>
+                        <p className={styles.preview}>{chat.lastMessage}</p>
 
                         <span className={styles.timestamp}>
-                            {formatTimestamp(chat.timestamp)}
+                            {formatTimestamp(chat.updatedAt)}
                         </span>
                     </div>
                 ))}
             </div>
 
-            {chats.length === 0 && (
+            {conversations.length === 0 && (
                 <div className={styles.empty}>
                     <MessageSquare className={styles.emptyIcon} />
                     <p className={styles.emptyText}>No conversation history</p>

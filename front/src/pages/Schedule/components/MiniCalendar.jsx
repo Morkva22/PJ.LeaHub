@@ -5,7 +5,6 @@ import styles from './MiniCalendar.module.css';
 export default function MiniCalendar({ currentWeekStart, onDateClick }) {
     const [currentMonth, setCurrentMonth] = useState(new Date());
 
-    // Синхронизация месяца с текущей неделей
     useEffect(() => {
         if (currentWeekStart) {
             const weekMonth = new Date(currentWeekStart.getFullYear(), currentWeekStart.getMonth(), 1);

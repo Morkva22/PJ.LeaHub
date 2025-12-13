@@ -154,8 +154,8 @@ const FeaturesList = () => {
                         <thead>
                         <tr>
                             <th className={styles.headerCell}></th>
-                            <th className={styles.headerCell}>Leantime OSS</th>
-                            <th className={styles.headerCell}>Leantime Pro / Plugin Bundle</th>
+                            <th className={styles.headerCell}>LeaHub OSS</th>
+                            <th className={styles.headerCell}>LeaHub Pro / Plugin Bundle</th>
                         </tr>
                         </thead>
                         <tbody>

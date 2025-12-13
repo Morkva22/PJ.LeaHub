@@ -12,7 +12,7 @@
 
 h2 {
     font-size: 2rem;
-    color: #50C878;
+    color: #256e4a;
     margin-bottom: 30px;
 }
 
@@ -32,7 +32,7 @@ input {
 }
 
 button {
-    background: #50C878;
+    background: #2c704c;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -43,7 +43,7 @@ button {
 }
 
 button:hover {
-    background: rgba(79, 200, 119, 0.64);
+    background: rgb(61, 129, 103);
 }
 
 @media (max-width: 768px) {

@@ -11,7 +11,7 @@
 
 .title {
     font-size: 32px;
-    color: #50C878;
+    color: #2d8659;
     margin-bottom: 16px;
     font-weight: 400;
 }
@@ -24,7 +24,7 @@
 }
 
 .enterpriseButton {
-    background-color: #50C878;
+    background-color: #2d8659;
     color: white;
     border: none;
     padding: 14px 32px;
@@ -35,5 +35,5 @@
 }
 
 .enterpriseButton:hover {
-    background-color: #50C878;
+    background-color: #2d8659;
 }

@@ -30,7 +30,7 @@
 }
 
 .featuresTable thead {
-    background-color: #50C878;
+    background-color: #2d8659;
     position: sticky;
     top: 0;
 }
@@ -41,7 +41,7 @@
     font-weight: 600;
     font-size: 14px;
     color: white;
-    border-bottom: 2px solid #3da866;
+    border-bottom: 2px solid #216c3e;
 }
 
 .headerCell:first-child {

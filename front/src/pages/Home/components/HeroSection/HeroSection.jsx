@@ -1,6 +1,9 @@
 import React from 'react';
 import styles from './HeroSection.module.css';
 import Button from '../../../../components/ui/button/Button.jsx';
+import q1 from '../../../../assets/images/q8.png';
+import q2 from '../../../../assets/images/q2.jpg';
+
 
 const HeroSection = () => {
     return (
@@ -24,7 +27,7 @@ const HeroSection = () => {
                             </div>
                             <div>
                                 <strong>Open Source</strong>
-                                <span className={styles.small}>Leantime is Open Source</span>
+                                <span className={styles.small}>LeaHub is Open Source</span>
                             </div>
                         </div>
 
@@ -61,10 +64,10 @@ const HeroSection = () => {
                 </div>
                 <div className={styles.images}>
                     <div className={styles.illustration}>
-                        <div className={styles.placeholder}>Иллюстрация<br />волны / мозг</div>
+                        <img src={q1} alt="Blog Post 1" className={styles.img} />
                     </div>
                     <div className={styles.photo}>
-                        <div className={styles.placeholder}>Фото команды<br />за столом</div>
+                        <img src={q2} alt="Blog Post 2" className={styles.img} />
                     </div>
                 </div>
             </div>

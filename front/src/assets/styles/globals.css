@@ -2,18 +2,18 @@
 
 /* Глобальные CSS переменные */
 :root {
-    --primary: #50C878;
-    --primary-dark: #3da866;
+    --primary: #2d8659;
+    --primary-dark: #256e4a;
     --text: #373333;
     --bg: #FFFFFF;
     --gray-light: #f8f9fa;
     --gray-medium: #e9ecef;
     --gray-dark: #6c757d;
     --border: #dee2e6;
-    --success: #3da866;
+    --success: #2d8659;
     --warning: #ffc107;
     --danger: #dc3545;
-    --info: #17a2b8;
+    --info: #2d8659;
 }
 
 /* Базовые сбросы */

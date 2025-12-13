@@ -5,7 +5,7 @@
 }
 
 .featureIconWrapper {
-    background-color: #3da866;
+    background-color: #227549;
     width: 64px;
     height: 64px;
     border-radius: 8px;
@@ -17,7 +17,7 @@
 
 .featureTitle {
     font-size: 20px;
-    color: #3da866;
+    color: #1b6540;
     margin-bottom: 16px;
     font-weight: 500;
 }

@@ -98,16 +98,16 @@
 
 .dayButton.inWeek {
     background-color: #d4f4dd;
-    color: #50C878;
+    color: #2d8659;
     font-weight: 600;
 }
 
 .dayButton.today {
-    background-color: #50C878;
+    background-color: #2d8659;
     color: white;
     font-weight: 600;
 }
 
 .dayButton.today.inWeek {
-    background-color: #3da866;
+    background-color: #2d8659;
 }

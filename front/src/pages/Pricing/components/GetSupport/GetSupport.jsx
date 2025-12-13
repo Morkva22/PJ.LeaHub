@@ -1,14 +1,21 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Clock, Code, HelpCircle } from 'lucide-react';
 import styles from './GetSupport.module.css';
 
 const GetSupport = () => {
+    const navigate = useNavigate();
+
+    const handleSupportClick = () => {
+        navigate('/404');
+    };
+
     return (
         <section className={styles.supportSection}>
             <div className={styles.container}>
                 <div className={styles.leftContent}>
                     <h2 className={styles.title}>Get support when you need it</h2>
-                    <button className={styles.supportButton}>
+                    <button className={styles.supportButton} onClick={handleSupportClick}>
                         Get priority support
                     </button>
                 </div>

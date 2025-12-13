@@ -1,14 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import { X, Send, Plus, Clock, Sparkles, Smile, Paperclip, Mic } from 'lucide-react';
+import apiService from '../../../../lib/api/apiService';
 import ChatMessage from '../ChatMessage/ChatMessage';
 import QuickPrompts from '../QuickPromts/QuickPrompts';
 import ChatHistory from '../ChatHistory/ChatHistory';
+import EmojiPicker from '../EmojiPicker/EmojiPicker';
 import styles from './ChatPanel.module.css';
 
 export default function ChatPanel({ isOpen, onClose }) {
     const [messages, setMessages] = useState([
         {
-            id: 1,
+            id: '1',
             type: 'bot',
             text: 'Hello! How can I help you?',
             timestamp: new Date()
@@ -16,8 +18,16 @@ export default function ChatPanel({ isOpen, onClose }) {
     ]);
     const [input, setInput] = useState('');
     const [showHistory, setShowHistory] = useState(false);
-    const [currentChatId, setCurrentChatId] = useState(null);
+    const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+    const [isRecording, setIsRecording] = useState(false);
+    const [currentConversationId, setCurrentConversationId] = useState(null);
+    const [conversations, setConversations] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [selectedFiles, setSelectedFiles] = useState([]);
     const messagesEndRef = useRef(null);
+    const fileInputRef = useRef(null);
+    const mediaRecorderRef = useRef(null);
+    const audioChunksRef = useRef([]);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -27,66 +37,63 @@ export default function ChatPanel({ isOpen, onClose }) {
         scrollToBottom();
     }, [messages]);
 
-    useEffect(() => {
-        if (messages.length > 1 && !currentChatId) {
-            saveCurrentChat();
+    const loadConversations = async () => {
+        try {
+            const convos = await apiService.getConversations();
+            setConversations(convos);
+        } catch (error) {
+            console.error('Failed to load conversations:', error);
         }
-    }, [messages]);
-
-    const saveCurrentChat = () => {
-        const chats = JSON.parse(localStorage.getItem('aiChats') || '[]');
-        const firstUserMessage = messages.find(m => m.type === 'user');
-
-        if (!firstUserMessage) return;
-
-        const chatTitle = firstUserMessage.text.slice(0, 50);
-        const chatId = currentChatId || Date.now();
-
-        const existingChatIndex = chats.findIndex(c => c.id === chatId);
-
-        const chatData = {
-            id: chatId,
-            title: chatTitle,
-            preview: firstUserMessage.text,
-            timestamp: new Date().toISOString(),
-            messages: messages.map(msg => ({
-                ...msg,
-                timestamp: msg.timestamp.toISOString()
-            }))
-        };
-
-        if (existingChatIndex >= 0) {
-            chats[existingChatIndex] = chatData;
-        } else {
-            chats.unshift(chatData);
-        }
-
-        localStorage.setItem('aiChats', JSON.stringify(chats.slice(0, 20)));
-        setCurrentChatId(chatId);
     };
 
-    const handleSend = () => {
-        if (!input.trim()) return;
+    const handleSend = async () => {
+        if ((!input.trim() && selectedFiles.length === 0) || isLoading) return;
 
-        const newMessage = {
-            id: Date.now(),
+        const userMessage = {
+            id: Date.now().toString(),
             type: 'user',
-            text: input,
-            timestamp: new Date()
+            text: input || '[Files attached]',
+            timestamp: new Date(),
+            attachments: selectedFiles.map(f => ({ name: f.name, type: 'file' }))
         };
 
-        setMessages([...messages, newMessage]);
+        setMessages(prev => [...prev, userMessage]);
         setInput('');
+        const filesToSend = [...selectedFiles];
+        setSelectedFiles([]);
+        setIsLoading(true);
 
-        setTimeout(() => {
-            const botResponse = {
-                id: Date.now() + 1,
+        try {
+            const response = filesToSend.length > 0
+                ? await apiService.sendMessageWithFiles(input, currentConversationId, filesToSend)
+                : await apiService.sendMessage(input, currentConversationId);
+
+            if (!currentConversationId && response.conversationId) {
+                setCurrentConversationId(response.conversationId);
+            }
+
+            const botMessage = {
+                id: response.messageId,
                 type: 'bot',
-                text: 'This is a placeholder response. AI integration coming soon!',
+                text: response.content,
+                timestamp: new Date(response.createdAt)
+            };
+
+            setMessages(prev => [...prev, botMessage]);
+        } catch (error) {
+            console.error('Failed to send message:', error);
+
+            const errorMessage = {
+                id: Date.now().toString(),
+                type: 'bot',
+                text: 'Sorry, I encountered an error. Please try again.',
                 timestamp: new Date()
             };
-            setMessages(prev => [...prev, botResponse]);
-        }, 1000);
+
+            setMessages(prev => [...prev, errorMessage]);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleQuickPrompt = (prompt) => {
@@ -96,42 +103,116 @@ export default function ChatPanel({ isOpen, onClose }) {
     const handleNewChat = () => {
         setMessages([
             {
-                id: Date.now(),
+                id: Date.now().toString(),
                 type: 'bot',
                 text: 'Hello! How can I help you?',
                 timestamp: new Date()
             }
         ]);
-        setCurrentChatId(null);
+        setCurrentConversationId(null);
         setShowHistory(false);
+        setSelectedFiles([]);
     };
 
-    const handleSelectChat = (chat) => {
-        setMessages(chat.messages);
-        setCurrentChatId(chat.id);
-        setShowHistory(false);
-    };
+    const handleSelectChat = async (conversation) => {
+        try {
+            const details = await apiService.getConversationDetails(conversation.id);
 
-    const handleDeleteChat = (chatId) => {
-        const chats = JSON.parse(localStorage.getItem('aiChats') || '[]');
-        const updatedChats = chats.filter(c => c.id !== chatId);
-        localStorage.setItem('aiChats', JSON.stringify(updatedChats));
+            const formattedMessages = details.messages.map(msg => ({
+                id: msg.id,
+                type: msg.role === 'user' ? 'user' : 'bot',
+                text: msg.content,
+                timestamp: new Date(msg.createdAt),
+                attachments: msg.attachments
+            }));
 
-        if (currentChatId === chatId) {
-            handleNewChat();
+            setMessages(formattedMessages);
+            setCurrentConversationId(conversation.id);
+            setShowHistory(false);
+        } catch (error) {
+            console.error('Failed to load conversation:', error);
         }
     };
 
-    const handleEmojiClick = () => {
-        console.log('Emoji picker - coming soon');
+    const handleDeleteChat = async (conversationId) => {
+        try {
+            await apiService.deleteConversation(conversationId);
+            await loadConversations();
+
+            if (currentConversationId === conversationId) {
+                handleNewChat();
+            }
+        } catch (error) {
+            console.error('Failed to delete conversation:', error);
+        }
+    };
+
+    const toggleHistory = async () => {
+        if (!showHistory) {
+            await loadConversations();
+        }
+        setShowHistory(!showHistory);
+    };
+
+    const handleFileSelect = (e) => {
+        const files = Array.from(e.target.files || []);
+        setSelectedFiles(prev => [...prev, ...files]);
     };
 
     const handleFileClick = () => {
-        console.log('File upload - coming soon');
+        fileInputRef.current?.click();
+    };
+
+    const removeFile = (index) => {
+        setSelectedFiles(prev => prev.filter((_, i) => i !== index));
+    };
+
+    const handleEmojiSelect = (emoji) => {
+        setInput(prev => prev + emoji);
+    };
+
+    const handleEmojiClick = () => {
+        setShowEmojiPicker(!showEmojiPicker);
+    };
+
+    const startRecording = async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorderRef.current = new MediaRecorder(stream);
+            audioChunksRef.current = [];
+
+            mediaRecorderRef.current.ondataavailable = (event) => {
+                audioChunksRef.current.push(event.data);
+            };
+
+            mediaRecorderRef.current.onstop = async () => {
+                const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+                const audioFile = new File([audioBlob], `voice-${Date.now()}.webm`, { type: 'audio/webm' });
+                setSelectedFiles(prev => [...prev, audioFile]);
+                stream.getTracks().forEach(track => track.stop());
+            };
+
+            mediaRecorderRef.current.start();
+            setIsRecording(true);
+        } catch (error) {
+            console.error('Failed to start recording:', error);
+            alert('Microphone access denied. Please enable it in your browser settings.');
+        }
+    };
+
+    const stopRecording = () => {
+        if (mediaRecorderRef.current && isRecording) {
+            mediaRecorderRef.current.stop();
+            setIsRecording(false);
+        }
     };
 
     const handleVoiceClick = () => {
-        console.log('Voice message - coming soon');
+        if (isRecording) {
+            stopRecording();
+        } else {
+            startRecording();
+        }
     };
 
     if (!isOpen) return null;
@@ -157,8 +238,8 @@ export default function ChatPanel({ isOpen, onClose }) {
                     New Chat
                 </button>
                 <button
-                    onClick={() => setShowHistory(!showHistory)}
-                    className={styles.historyButton}
+                    onClick={toggleHistory}
+                    className={`${styles.historyButton} ${showHistory ? styles.active : ''}`}
                 >
                     <Clock className={styles.buttonIcon} />
                     History
@@ -167,8 +248,10 @@ export default function ChatPanel({ isOpen, onClose }) {
 
             {showHistory ? (
                 <ChatHistory
+                    conversations={conversations}
                     onSelectChat={handleSelectChat}
                     onDeleteChat={handleDeleteChat}
+                    currentConversationId={currentConversationId}
                 />
             ) : (
                 <>
@@ -179,19 +262,53 @@ export default function ChatPanel({ isOpen, onClose }) {
                         {messages.map((msg) => (
                             <ChatMessage key={msg.id} message={msg} />
                         ))}
+                        {isLoading && (
+                            <div className={styles.loadingMessage}>
+                                <div className={styles.loadingDots}>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        )}
                         <div ref={messagesEndRef} />
                     </div>
 
                     <div className={styles.inputContainer}>
+                        {selectedFiles.length > 0 && (
+                            <div className={styles.filesPreview}>
+                                {selectedFiles.map((file, index) => (
+                                    <div key={index} className={styles.fileChip}>
+                                        <Paperclip className={styles.fileIcon} size={14} />
+                                        <span className={styles.fileName}>{file.name}</span>
+                                        <button
+                                            onClick={() => removeFile(index)}
+                                            className={styles.removeFileButton}
+                                        >
+                                            <X size={14} />
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
                         <div className={styles.inputWrapper}>
                             <div className={styles.inputActions}>
-                                <button
-                                    onClick={handleEmojiClick}
-                                    className={styles.actionButton}
-                                    title="Add emoji"
-                                >
-                                    <Smile className={styles.actionIcon} />
-                                </button>
+                                <div style={{ position: 'relative' }}>
+                                    <button
+                                        onClick={handleEmojiClick}
+                                        className={styles.actionButton}
+                                        title="Add emoji"
+                                    >
+                                        <Smile className={styles.actionIcon} />
+                                    </button>
+                                    {showEmojiPicker && (
+                                        <EmojiPicker
+                                            onSelect={handleEmojiSelect}
+                                            onClose={() => setShowEmojiPicker(false)}
+                                        />
+                                    )}
+                                </div>
                                 <button
                                     onClick={handleFileClick}
                                     className={styles.actionButton}
@@ -201,8 +318,8 @@ export default function ChatPanel({ isOpen, onClose }) {
                                 </button>
                                 <button
                                     onClick={handleVoiceClick}
-                                    className={styles.actionButton}
-                                    title="Voice message"
+                                    className={`${styles.actionButton} ${isRecording ? styles.recording : ''}`}
+                                    title={isRecording ? "Stop recording" : "Voice message"}
                                 >
                                     <Mic className={styles.actionIcon} />
                                 </button>
@@ -214,10 +331,11 @@ export default function ChatPanel({ isOpen, onClose }) {
                                 onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                                 placeholder="Ask me anything..."
                                 className={styles.input}
+                                disabled={isLoading}
                             />
                             <button
                                 onClick={handleSend}
-                                disabled={!input.trim()}
+                                disabled={(!input.trim() && selectedFiles.length === 0) || isLoading}
                                 className={styles.sendButton}
                             >
                                 <Send className={styles.sendIcon} />
@@ -227,6 +345,15 @@ export default function ChatPanel({ isOpen, onClose }) {
                             AI responses are generated and may not be accurate
                         </p>
                     </div>
+
+                    <input
+                        ref={fileInputRef}
+                        type="file"
+                        multiple
+                        style={{ display: 'none' }}
+                        onChange={handleFileSelect}
+                        accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.txt"
+                    />
                 </>
             )}
         </div>

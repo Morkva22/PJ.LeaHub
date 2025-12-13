@@ -12,10 +12,22 @@
     font-size: 48px;
     font-weight: 800;
     text-align: center;
-    color: #50C878;
+    color: #2d8659;
     margin-bottom: 16px;
 }
+.image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
 
+.imageWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .subtitle {
     font-size: 18px;
     color: #666;
@@ -47,11 +59,11 @@
 
 .tab:hover {
     background: transparent !important;
-    color: #50C878;
+    color: #2d8659;
 }
 
 .tab.active {
-    color: #50C878;
+    color: #2d8659;
 }
 
 .tab::after {
@@ -61,15 +73,14 @@
     right: 0;
     bottom: -8px;
     height: 3px;
-    background-color: #50C878;
+    background-color: #2d8659;
     border-radius: 2px;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.tab:hover::after,
-.tab.active::after {
+.tab:hover::after, .tab.active::after {
     transform: scaleX(1);
 }
 
@@ -91,7 +102,7 @@
 .placeholder {
     width: 100%;
     min-height: 480px;
-    background: linear-gradient(135deg, #76a820 0%, #50C878 100%);
+    background: linear-gradient(135deg, #256e4a 0%, #2d8659 100%);
     color: white;
     display: flex;
     align-items: center;

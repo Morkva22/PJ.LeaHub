@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Calendar, Clock, Video } from 'lucide-react';
+import { Clock, Video } from 'lucide-react';
 import MiniCalendar from './components/MiniCalendar';
 import WeekView from './components/WeekView';
 import BookingModal from './components/BookingModal';
@@ -30,6 +30,8 @@ export default function Schedule() {
 
     const handleModalClose = () => {
         setShowModal(false);
+        setSelectedDate(null);
+        setSelectedTime(null);
     };
 
     const handleWeekChange = (weekStart) => {
@@ -46,7 +48,7 @@ export default function Schedule() {
 
                     <div className={styles.hostInfo}>
                         <img
-                            src="https://api.dicebear.com/5.x/fun-emoji/svg?seed="
+                            src="https://api.dicebear.com/5.x/fun-emoji/svg?seed=host"
                             alt="Markelov Morkovkin"
                             className={styles.avatar}
                         />

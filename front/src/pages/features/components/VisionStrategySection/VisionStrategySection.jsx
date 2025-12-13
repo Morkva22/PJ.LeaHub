@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Target, Scale, Link2, Star } from 'lucide-react';
 import styles from './VisionStrategySection.module.css';
+import a2 from '../../../../assets/images/a2.png';
+import a3 from '../../../../assets/images/a3.png';
+import a4 from '../../../../assets/images/a4.png';
+import a5 from '../../../../assets/images/a5.png';
 
 const tabs = [
     {
@@ -10,7 +14,7 @@ const tabs = [
         title: 'Use Vision & Strategy to See Progress',
         subtitle: 'Create a Long Term Vision & Strategy',
         text: 'Whether it\'s to buy a house, graduate college, or build a billion dollar company, having a vision and strategy helps to keep us focused.\n\nIn Leantime, create a strategic vision and outline to where you want to see things over the next 1 to 5 years.',
-        img: 'Vision & Strategy Board'
+        img: a2
     },
     {
         id: 'focus',
@@ -19,7 +23,7 @@ const tabs = [
         title: 'Use Vision & Strategy to See Progress',
         subtitle: 'Make The Focus Points Clear',
         text: 'By setting Focus Areas, you can clearly define what you need to focus on in order to reach your goals.',
-        img: 'Focus Areas Dashboard'
+        img: a3
     },
     {
         id: 'connect',
@@ -28,7 +32,7 @@ const tabs = [
         title: 'Use Vision & Strategy to See Progress',
         subtitle: 'Strategic Goals that connect to the Project Goals',
         text: 'Report goal data back up to the strategy level in real time when you update those goals at the project level.\n\nHere you have the ability to link to projects and report, link only or keep this a high level goal only.',
-        img: 'Connected Goals View'
+        img: a4
     },
     {
         id: 'validate',
@@ -37,7 +41,7 @@ const tabs = [
         title: 'Use Vision & Strategy to See Progress',
         subtitle: 'Make Sure It\'s the Right Strategy',
         text: 'Take a blueprint and test, define and validate your plans and strategies.\n\nBlueprints exist at both the Strategy level and at the Project level.',
-        img: 'Validation Dashboard'
+        img: a5
     }
 ];
 
@@ -56,7 +60,11 @@ const VisionStrategySection = () => {
                 <div className={styles.content}>
                     <div className={styles.contentArea}>
                         <div className={styles.imageWrapper}>
-                            <div className={styles.placeholder}>{current.img}</div>
+                            <img
+                                src={current.img}
+                                alt={current.subtitle}
+                                className={styles.image}
+                            />
                         </div>
 
                         <div className={styles.textContent}>

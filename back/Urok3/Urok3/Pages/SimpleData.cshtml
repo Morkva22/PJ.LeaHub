@@ -1,0 +1,25 @@
+@page
+@model SimpleData
+
+@{
+    ViewData["Title"] = "Прості дані";
+}
+
+<h1>Інформація про користувача</h1>
+
+<p>Ім'я:          <strong>@Model.UserName</strong></p>
+<p>Вік:           <strong>@Model.UserAge</strong> років</p>
+<p>Адмін?:        <strong>@(Model.IsAdmin )</strong></p>
+<p>Дата:          <strong>@Model.CurrentDate</strong></p>
+<p>Час (UTC):     <strong>@Model.TimeStamp</strong></p>
+<p>Пошта:         <strong>@Model.UserEmail</strong></p>
+@if (Model.Skills?.Any() == true)
+{
+    <p>Навички:</p>
+    <ul>
+        @foreach (var skill in Model.Skills)
+        {
+            <li>@skill</li>
+        }
+    </ul>
+}

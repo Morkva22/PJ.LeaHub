@@ -1,0 +1,74 @@
+@page
+@model DTO.ASP.Pages.StudentProfileModel
+@{
+    ViewData["Title"] = "Student Profile";
+    var age = DateTime.Now.Year - Model.Student.BirthDate.Year;
+    if (Model.Student.BirthDate > DateTime.Now.AddYears(-age))
+    {
+        age--;
+    }
+}
+
+@* This is a student profile page showing detailed information *@
+
+<div>
+    <h1>Student Profile</h1>
+
+    @* Basic Information Section *@
+    <div>
+        <h2>Basic Information</h2>
+        <p><strong>Student ID:</strong> @Model.Student.StudentId</p>
+        <p><strong>Full Name:</strong> @Model.Student.FullName</p>
+        <p><strong>Birth Date:</strong> @Model.Student.BirthDate.ToString("dd.MM.yyyy")</p>
+        <p><strong>Age:</strong> @age years</p>
+    </div>
+
+    @* Academic Information Section *@
+    <div>
+        <h2>Academic Information</h2>
+        <p><strong>Faculty:</strong> @Model.Student.Faculty</p>
+        <p><strong>Enrollment Date:</strong> @Model.Student.EnrollmentDateTime.ToString("dd.MM.yyyy HH:mm:ss")</p>
+        <p><strong>Current Course:</strong> @Model.Student.Course</p>
+        <p><strong>Average Grade:</strong> @Model.Student.AverageGrade</p>
+    </div>
+
+    @* Status Information Section *@
+    <div>
+        <h2>Status Information</h2>
+
+        @* Using ternary operator *@
+        <p><strong>Budget Student:</strong> @(Model.Student.IsBudgetStudent ? "Yes" : "No")</p>
+        <p><strong>Has Scholarship:</strong> @(Model.Student.HasScholarship ? "Yes" : "No")</p>
+
+        @* Using if-else block *@
+        <p><strong>Graduating Student:</strong>
+            @{
+                if (Model.Student.IsGraduatingStudent)
+                {
+                    <span>Yes</span>
+                }
+                else if (!Model.Student.IsGraduatingStudent && Model.Student.Course == 4)
+                {
+                    <span>Almost graduating</span>
+                }
+                else
+                {
+                    <span>No</span>
+                }
+            }
+        </p>
+    </div>
+
+    @* Additional calculated information *@
+    @{
+        var yearsEnrolled = DateTime.Now.Year - Model.Student.EnrollmentDateTime.Year;
+        var gradeStatus = Model.Student.AverageGrade >= 4.5 ? "Excellent" :
+            Model.Student.AverageGrade >= 3.5 ? "Good" : "Average";
+    }
+
+    <div>
+        <h2>Additional Info</h2>
+        <p><strong>Years Enrolled:</strong> @yearsEnrolled</p>
+        <p><strong>Performance Status:</strong> @gradeStatus</p>
+    </div>
+</div>

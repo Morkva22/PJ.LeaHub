@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\DTO3.ASP.props" />
-</Project>

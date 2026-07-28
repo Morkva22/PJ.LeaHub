@@ -1,4 +1,4 @@
-# LeaHub — Educational & Learning Platform (Full-Stack)
+# LeaHub - Educational & Learning Platform (Full-Stack)
 
 LeaHub is a modern full-stack web application designed for educational and schedule management workflows. The project integrates an interactive React frontend with a scalable .NET 8 Web API backend, featuring AI chatbot assistance, user authentication, interactive scheduling, and Docker containerization.
 
